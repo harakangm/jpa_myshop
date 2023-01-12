@@ -221,89 +221,6 @@ class ItemRepositoryTest {
 		
 	}
 	
-	@Test
-	@DisplayName("querydsl 퀴즈1")
-	public void test1() {
-		this.createItemTest();
-		//쿼리문을 쓰기위한 객체 생성
-		JPAQueryFactory jpaQueryFactory = new JPAQueryFactory(em);
-		
-		QItem item = QItem.item;
-		
-		JPAQuery<Item> query =  jpaQueryFactory.selectFrom(item).where(item.itemNm.eq("테스트 상품1"))
-				.where(item.itemSellStatus.eq(ItemSellStatus.SELL));
-		
-		List<Item> itemList = query.fetch();
-		
-		for(Item i : itemList) {
-			System.out.print(i.toString());
-		}
-	}
-	
-	@Test
-	@DisplayName("qureydsl 퀴즈2")
-	public void test2() {
-		this.createItemTest();
-		
-		JPAQueryFactory query = new JPAQueryFactory(em);
-		QItem item = QItem.item;
-		
-		JPAQuery<Item> query2 = query.selectFrom(item).where(item.price.between(10004, 10008));
-		
-		List<Item> itemList = query2.fetch();
-		
-		for(Item i : itemList) {
-			System.out.println(i.toString());
-		}
-	}
-
-	@Test
-	@DisplayName("querydsl 퀴즈3")
-	public void test3() {
-		this.createItemTest();
-		JPAQueryFactory query = new JPAQueryFactory(em);
-		QItem item = QItem.item;
-		
-		JPAQuery<Item> query2 = query.selectFrom(item).where(item.regTime.after(LocalDateTime.of(2023,01,01,12,12,44)));
-		
-		List<Item> itemList = query2.fetch();
-		
-		for(Item i : itemList) {
-			System.out.println(i.toString());
-		}
-	}
-	
-	@Test
-	@DisplayName("querydsl 퀴즈4")
-	public void test4() {
-		this.createItemTest();
-		JPAQueryFactory query = new JPAQueryFactory(em);
-		QItem item = QItem.item;
-		
-		JPAQuery<Item> query2 = query.selectFrom(item).where(item.itemSellStatus.isNotNull());
-		
-		List<Item> itemList = query2.fetch();
-		
-		for(Item i : itemList) {
-			System.out.println(i.toString());
-		}
-	}
-	
-	@Test
-	@DisplayName("querydsl 퀴즈5")
-	public void test5() {
-		this.createItemTest();
-		
-		JPAQueryFactory q = new JPAQueryFactory(em);
-		QItem qItem = QItem.item;
-		
-		JPAQuery<Item> qurey = q.selectFrom(qItem).where(qItem.itemDetail.like("%설명1"));
-		List<Item> itemList = qurey.fetch();
-		
-		for(Item i : itemList) {
-			System.out.println(i.toString());
-		}
-	}
 	
 	static void  quiz() {
 		//=================================================
@@ -359,8 +276,7 @@ class ItemRepositoryTest {
 //		}
 	}
 
-
-	 static void quiz2() {
+	static void quiz2() {
 //			@Test
 //			@DisplayName("퀴즈1")
 //			public void findByPriceGreaterThanEqualtest() {
@@ -382,4 +298,89 @@ class ItemRepositoryTest {
 //			}
 	 }
 
+	static void quiz3() {
+//		@Test
+//		@DisplayName("querydsl 퀴즈1")
+//		public void test1() {
+//			this.createItemTest();
+//			//쿼리문을 쓰기위한 객체 생성
+//			JPAQueryFactory jpaQueryFactory = new JPAQueryFactory(em);
+//			
+//			QItem item = QItem.item;
+//			
+//			JPAQuery<Item> query =  jpaQueryFactory.selectFrom(item).where(item.itemNm.eq("테스트 상품1"))
+//					.where(item.itemSellStatus.eq(ItemSellStatus.SELL));
+//			
+//			List<Item> itemList = query.fetch();
+//			
+//			for(Item i : itemList) {
+//				System.out.print(i.toString());
+//			}
+//		}
+//		
+//		@Test
+//		@DisplayName("qureydsl 퀴즈2")
+//		public void test2() {
+//			this.createItemTest();
+//			
+//			JPAQueryFactory query = new JPAQueryFactory(em);
+//			QItem item = QItem.item;
+//			
+//			JPAQuery<Item> query2 = query.selectFrom(item).where(item.price.between(10004, 10008));
+//			
+//			List<Item> itemList = query2.fetch();
+//			
+//			for(Item i : itemList) {
+//				System.out.println(i.toString());
+//			}
+//		}
+//
+//		@Test
+//		@DisplayName("querydsl 퀴즈3")
+//		public void test3() {
+//			this.createItemTest();
+//			JPAQueryFactory query = new JPAQueryFactory(em);
+//			QItem item = QItem.item;
+//			
+//			JPAQuery<Item> query2 = query.selectFrom(item).where(item.regTime.after(LocalDateTime.of(2023,01,01,12,12,44)));
+//			
+//			List<Item> itemList = query2.fetch();
+//			
+//			for(Item i : itemList) {
+//				System.out.println(i.toString());
+//			}
+//		}
+//		
+//		@Test
+//		@DisplayName("querydsl 퀴즈4")
+//		public void test4() {
+//			this.createItemTest();
+//			JPAQueryFactory query = new JPAQueryFactory(em);
+//			QItem item = QItem.item;
+//			
+//			JPAQuery<Item> query2 = query.selectFrom(item).where(item.itemSellStatus.isNotNull());
+//			
+//			List<Item> itemList = query2.fetch();
+//			
+//			for(Item i : itemList) {
+//				System.out.println(i.toString());
+//			}
+//		}
+//		
+//		@Test
+//		@DisplayName("querydsl 퀴즈5")
+//		public void test5() {
+//			this.createItemTest();
+//			
+//			JPAQueryFactory q = new JPAQueryFactory(em);
+//			QItem qItem = QItem.item;
+//			
+//			JPAQuery<Item> qurey = q.selectFrom(qItem).where(qItem.itemDetail.like("%설명1"));
+//			List<Item> itemList = qurey.fetch();
+//			
+//			for(Item i : itemList) {
+//				System.out.println(i.toString());
+//			}
+//		}
+	}
 }
