@@ -15,7 +15,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class Item {
+public class Item extends BaseEntity{
 	//not null 이 아닐 때에는 필드 타입을 객체(예 int-> Integer)로 지정해야 한다.
 	
 	@Id // p key
@@ -38,8 +38,4 @@ public class Item {
 
 	@Enumerated(EnumType.STRING)
 	private ItemSellStatus itemSellStatus; // 상품 판매상태
-
-	private LocalDateTime regTime; // 등록 시간
-
-	private LocalDateTime updateTime; // 수정 시간
 }

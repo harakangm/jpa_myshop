@@ -1,18 +1,18 @@
 ines (13 sloc) 301 Bytes
 
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
 	<!-- th:fragment 다른 페이지에 포함시킬 영역을 만들어 준다. -->
-	<div th:fragment="header">
-		<nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+<div th:fragment="header">
+		<nav class="navbar navbar-expand-lg" style="background-color: #E3F2FD;">
 			<div class="container-fluid">
-				<a class="navbar-brand" href="/"><img alt="로고"
-					src="../images/logo.png" width="40"></a>
+				<a class="navbar-brand" href="/"><img src="/images/logo.png" width="40" alt="로고"/></a>
 				<button class="navbar-toggler" type="button"
 					data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
 					aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -21,25 +21,23 @@ ines (13 sloc) 301 Bytes
 				</button>
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-						<li class="nav-item"><a class="nav-link active"
-							aria-current="page" href="#">Home</a></li>
-						<li class="nav-item">
-						<a class="nav-link" href="/admin/item/new">상품등록</a>
+						<li class="nav-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN')"> <!-- 세션에 따라 보이는 -->
+							<a class="nav-link" href="/admin/item/new">상품등록</a>
 						</li>
-						<li class="nav-item">
-						<a class="nav-link" href="/admin/items">상품관리</a>
+						<li class="nav-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
+							<a class="nav-link" href="/admin/items">상품관리</a>
 						</li>
-						<li class="nav-item">
-						<a class="nav-link" href="/cart">장바구니</a>
+						<li class="nav-item" sec:authorize="isAuthenticated()">
+							<a class="nav-link" href="/cart">장바구니</a>
 						</li>
-						<li class="nav-item">
-						<a class="nav-link" href="/orders">구매이력</a>
+						<li class="nav-item" sec:authorize="isAuthenticated()">
+							<a class="nav-link" href="/orders">구매이력</a>
 						</li>
-						<li class="nav-item">
-						<a class="nav-link" href="/members/login">로그인</a>
+						<li class="nav-item" sec:authorize="isAnonymous()">
+							<a class="nav-link" href="/members/login">로그인</a>
 						</li>
-						<li class="nav-item">
-						<a class="nav-link" href="/members/logout">로그아웃</a>
+						<li class="nav-item" sec:authorize="isAuthenticated()">
+							<a class="nav-link" href="/members/logout">로그아웃</a>
 						</li>
 					</ul>
 					<form class="d-flex" role="search">
